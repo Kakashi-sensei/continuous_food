@@ -14,13 +14,56 @@ df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\
 #exclude values greater than it shold be.
 
 # Named vector of thresholds for each variable
-thresholds <- c(Energy_1.0=47523.7,Energy_2.0=68418.5,Energy_3.0=51266.1,Energy_4.0=60976.3,Energy_0.0=78205.7,Protein_1.0=636.08,Protein_2.0=792.06,Protein_3.0=565.45,Protein_4.0=665.63,Protein_0.0=801.85,Fat_1.0=490.39,Fat_2.0=687.72,Fat_3.0=499.93,Fat_4.0=553.05,Fat_0.0=576.6,Carbohydrate_1.0=1615.02,Carbohydrate_2.0=1752.88,Carbohydrate_3.0=1595.81,Carbohydrate_4.0=1833.78,Carbohydrate_0.0=2562.05,SaturateFat_1.0=207.09,SaturateFat_2.0=225.47,SaturateFat_3.0=209.06,SaturateFat_4.0=200.54,SaturateFat_0.0=252.17,PolyunsaturatFat_1.0=115.61,PolyunsaturatFat_2.0=150.71,PolyunsaturatFat_3.0=98.48,PolyunsaturatFat_4.0=119.47,PolyunsaturatFat_0.0=126.26,Sugars_1.0=755.95,Sugars_2.0=1239.45,Sugars_3.0=784.1,Sugars_4.0=1276.38,Sugars_0.0=1342.33,EnglystDietaryFibre_1.0=129.58,EnglystDietaryFibre_2.0=125.78,EnglystDietaryFibre_3.0=132.59,EnglystDietaryFibre_4.0=202.08,EnglystDietaryFibre_0.0=153.88,Iron_1.0=67.09,Iron_2.0=105.61,Iron_3.0=92.51,Iron_4.0=105.63,Iron_0.0=124.32,VB6_1.0=14.45,VB6_2.0=19.28,VB6_3.0=13.21,VB6_4.0=14.83,VB6_0.0=20.39,VB12_1.0=95.25,VB12_2.0=100.75,VB12_3.0=99.6,VB12_4.0=114.2,VB12_0.0=97.51,Folate_1.0=1973,Folate_2.0=2241.14,Folate_3.0=2123.26,Folate_4.0=2353.85,Folate_0.0=2734.28,VC_1.0=2564,VC_2.0=2278.67,VC_3.0=1865.17,VC_4.0=3218.29,VC_0.0=3788.34,Potassium_1.0=25757.3,Potassium_2.0=32298.2,Potassium_3.0=24940.6,Potassium_4.0=26038.7,Potassium_0.0=30634.8,Magnesium_1.0=1909.81,Magnesium_2.0=2765.46,Magnesium_3.0=2106.65,Magnesium_4.0=2522.53,Magnesium_0.0=3103.12,Retinol_1.0=999.99,Retinol_2.0=999.68,Retinol_3.0=999.5,Retinol_4.0=999.77,Retinol_0.0=999.93,Carotene_1.0=52829.4,Carotene_2.0=46729.1,Carotene_3.0=52510.5,Carotene_4.0=51772.4,Carotene_0.0=47406.1,VD_1.0=46.32,VD_2.0=44.64,VD_3.0=44.12,VD_4.0=45.43,VD_0.0=48.59,Alcohol_continuous_1.0=255.21,Alcohol_continuous_2.0=275.2,Alcohol_continuous_3.0=289.19,Alcohol_continuous_4.0=329.45,Alcohol_continuous_0.0=274.5,Starch_1.0=701.26,Starch_2.0=715.11,Starch_3.0=656.86,Starch_4.0=943.23,Starch_0.0=1388.88,Calcium_1.0=7033.75,Calcium_2.0=8086.33,Calcium_3.0=7172.47,Calcium_4.0=7705.8,Calcium_0.0=8011.52,VE_1.0=84.53,VE_2.0=96.62,VE_3.0=78.16,VE_4.0=79.22,VE_0.0=87.24,)
-
+thresholds <- c(Energy_1.0=47523.7, Energy_2.0=68418.5, Energy_3.0=51266.1, 
+               Energy_4.0=60976.3, Energy_0.0=78205.7, Protein_1.0=636.08, 
+               Protein_2.0=792.06, Protein_3.0=565.45, Protein_4.0=665.63, 
+               Protein_0.0=801.85, Fat_1.0=490.39, Fat_2.0=687.72, 
+               Fat_3.0=499.93, Fat_4.0=553.05, Fat_0.0=576.6, 
+               Carbohydrate_1.0=1615.02, Carbohydrate_2.0=1752.88, 
+               Carbohydrate_3.0=1595.81, Carbohydrate_4.0=1833.78, 
+               Carbohydrate_0.0=2562.05, SaturateFat_1.0=207.09, 
+               SaturateFat_2.0=225.47, SaturateFat_3.0=209.06, 
+               SaturateFat_4.0=200.54, SaturateFat_0.0=252.17, 
+               PolyunsaturatFat_1.0=115.61, PolyunsaturatFat_2.0=150.71, 
+               PolyunsaturatFat_3.0=98.48, PolyunsaturatFat_4.0=119.47, 
+               PolyunsaturatFat_0.0=126.26, Sugars_1.0=755.95, 
+               Sugars_2.0=1239.45, Sugars_3.0=784.1, Sugars_4.0=1276.38, 
+               Sugars_0.0=1342.33, EnglystDietaryFibre_1.0=129.58, 
+               EnglystDietaryFibre_2.0=125.78, EnglystDietaryFibre_3.0=132.59, 
+               EnglystDietaryFibre_4.0=202.08, EnglystDietaryFibre_0.0=153.88, 
+               Iron_1.0=67.09, Iron_2.0=105.61, Iron_3.0=92.51, 
+               Iron_4.0=105.63, Iron_0.0=124.32, VB6_1.0=14.45, 
+               VB6_2.0=19.28, VB6_3.0=13.21, VB6_4.0=14.83, VB6_0.0=20.39, 
+               VB12_1.0=95.25, VB12_2.0=100.75, VB12_3.0=99.6, 
+               VB12_4.0=114.2, VB12_0.0=97.51, Folate_1.0=1973, 
+               Folate_2.0=2241.14, Folate_3.0=2123.26, Folate_4.0=2353.85, 
+               Folate_0.0=2734.28, VC_1.0=2564, VC_2.0=2278.67, 
+               VC_3.0=1865.17, VC_4.0=3218.29, VC_0.0=3788.34, 
+               Potassium_1.0=25757.3, Potassium_2.0=32298.2, 
+               Potassium_3.0=24940.6, Potassium_4.0=26038.7, 
+               Potassium_0.0=30634.8, Magnesium_1.0=1909.81, 
+               Magnesium_2.0=2765.46, Magnesium_3.0=2106.65, 
+               Magnesium_4.0=2522.53, Magnesium_0.0=3103.12, 
+               Retinol_1.0=999.99, Retinol_2.0=999.68, Retinol_3.0=999.5, 
+               Retinol_4.0=999.77, Retinol_0.0=999.93, Carotene_1.0=52829.4, 
+               Carotene_2.0=46729.1, Carotene_3.0=52510.5, 
+               Carotene_4.0=51772.4, Carotene_0.0=47406.1, VD_1.0=46.32, 
+               VD_2.0=44.64, VD_3.0=44.12, VD_4.0=45.43, VD_0.0=48.59, 
+               Alcohol_continuous_1.0=255.21, Alcohol_continuous_2.0=275.2, 
+               Alcohol_continuous_3.0=289.19, Alcohol_continuous_4.0=329.45, 
+               Alcohol_continuous_0.0=274.5, Starch_1.0=701.26, 
+               Starch_2.0=715.11, Starch_3.0=656.86, Starch_4.0=943.23, 
+               Starch_0.0=1388.88, Calcium_1.0=7033.75, Calcium_2.0=8086.33, 
+               Calcium_3.0=7172.47, Calcium_4.0=7705.8, Calcium_0.0=8011.52, 
+               VE_1.0=84.53, VE_2.0=96.62, VE_3.0=78.16, VE_4.0=79.22, 
+               VE_0.0=87.24) 
 
 # the following variables may need to log: Polyunsaturated fat, VB12?, VC, Retinol, Carotene, VD, Alcohol?, 
 
-
-
+for (var in names(thresholds)) {
+  threshold_value <- thresholds[var]
+  df[[var]][df[[var]] > threshold_value] <- NA
+}
 
 # List of variables
 variables <- c("Energy", "Protein", "Fat", "Carbohydrate", "SaturateFat", "PolyunsaturatFat", 
@@ -59,6 +102,843 @@ for (var in variables) {
 # Remove the columns from the dataframe
 df <- df[ , !(colnames(df) %in% cols_to_remove)]
 
-write.csv(df, "C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\food_continuous.csv",na='',row.names=FALSE)
+write.csv(df, "C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv",na='',row.names=FALSE)
 rm(list=ls())
 ```
+
+```{r}
+#main effects test for continuous data
+library(lmerTest)
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+# Fit the model
+df$APOE_all <- as.factor(df$APOE_all)
+df$T40_Gcar <- as.factor(df$T40_Gcar)
+df$family_history_AD <- as.factor(df$family_history_AD)
+df$Sex <- as.factor(df$Sex)
+df$AlcoholY08 <- as.factor(df$AlcoholY08)
+df$SmokingY08 <- as.factor(df$SmokingY08)
+df$Assessment_0 <- as.factor(df$Assessment_0)
+df$EID <- as.factor(df$EID)
+results <- data.frame()
+# List of variables to test
+test_vars <- c("Energy_mean", "Protein_mean", "Fat_mean", "Carbohydrate_mean", "SaturateFat_mean", 
+               "PolyunsaturatFat_mean", "Sugars_mean", "EnglystDietaryFibre_mean", "Iron_mean", "VB6_mean", 
+               "VB12_mean", "Folate_mean", "VC_mean", "Potassium_mean", "Magnesium_mean", "Retinol_mean", 
+               "Carotene_mean", "VD_mean", "Alcohol_continuous_mean", "Starch_mean", "Calcium_mean", "VE_mean")
+
+dependent_vars <- c("rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", 
+                    "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20")
+
+# Double loop through each dependent and test variable and fit the model
+for (dep_var in dependent_vars) {
+  for (test_var in test_vars) {
+  
+    # Construct the formula
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + 
+                               BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend +", test_var, "+ 
+                               (1 | Assessment_0)"))
+  
+    # Fit the model
+    model <- lmer(formula, data = df, REML=FALSE)
+    
+   # Get the summary
+    model_summary <- summary(model)
+    
+    # Extract the results for the test variable
+    estimate <- model_summary$coefficients[test_var, "Estimate"]
+    std_error <- model_summary$coefficients[test_var, "Std. Error"]
+    p_value <- model_summary$coefficients[test_var, "Pr(>|t|)"]
+    
+    # Add the results to the data frame
+    results <- rbind(results, data.frame(Dependent_Variable = dep_var,
+                                         Test_Variable = test_var,
+                                         Estimate = estimate,
+                                         Std_Error = std_error,
+                                         p_value = p_value))
+  }
+}
+write.csv(results, "C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\output\\maineffect_continuous2.csv",na='',row.names=FALSE)
+rm(list=ls())
+```
+
+```{r}
+#interaction test for VBs
+library(lmerTest)
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "Alcohol_continuous_mean", "Starch_mean", "Calcium_mean", "VE_mean", 
+               "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", 
+               "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables
+dependent_vars <- c("rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", 
+                    "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20")
+
+# List of variables to test
+test_vars <- c("VB6_mean", "VB12_mean", "Folate_mean")
+
+# List of factors
+factor_vars <- c("APOE_all", "T40_Gcar", "family_history_AD")
+
+# Initialize a results data frame
+results <- data.frame()
+
+# Loop over each dependent variable
+for(factor_var in factor_vars) {
+ for (dep_var in dependent_vars) {
+  for (test_var in test_vars) {
+      
+    # Construct the formula
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + 
+                               BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend +",test_var,"+", factor_var, ":", test_var, "+ 
+                               (1 | Assessment_0)"))
+  
+    # Fit the model
+    model <- lmer(formula, data = df, REML=FALSE)
+
+ # Get the summary
+    model_summary <- summary(model)
+   
+    # Extract the results for the interaction term
+    interaction_term <- paste(factor_var, test_var, sep=":")
+    estimate <- model_summary$coefficients[interaction_term, "Estimate"]
+    std_error <- model_summary$coefficients[interaction_term, "Std. Error"]
+    p_value <- model_summary$coefficients[interaction_term, "Pr(>|t|)"]
+
+    # Add the results to the data frame
+    results <- rbind(results, data.frame(Dependent_Variable = dep_var,
+                                         Factors = factor_var,
+                                         Test_Variable = test_var,
+                                         Estimate = estimate,
+                                         Std_Error = std_error,
+                                         P_Value = p_value))
+    }
+  }
+}
+write.csv(results, "C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\output\\VBs\\results\\interactions_VBs.csv",na='',row.names=FALSE)
+rm(list=ls())
+```
+
+```{r}
+library(lmerTest)
+library(ggplot2)
+library(ggthemes)  # for Calibri font
+
+# IC1, IC20 with Folate on FH
+
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables (including both components)
+dependent_vars <- c("rsfMRI_Component1", "rsfMRI_Component20")
+
+# Loop over each dependent variable
+for (dep_var in dependent_vars) {
+    # Fit the model
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + Folate_mean + family_history_AD:Folate_mean + (1 | Assessment_0)"))
+    model <- lmer(formula, data = df, REML = FALSE)
+
+    # Generate predicted values
+    model_rows <- complete.cases(model.frame(model))
+    predicted_values_full <- rep(NA, nrow(df))
+    predicted_values_full[model_rows] <- predict(model, re.form = NA)
+    
+    # Add the predicted values to df
+    predicted_col_name <- paste("predicted", dep_var, sep = "_")
+    df[[predicted_col_name]] <- predicted_values_full
+
+    # Filter out rows where Family_history_AD is NA
+    df_filtered <- df[!is.na(df$family_history_AD), ]
+
+    # Determine the plot title based on the dependent variable
+    if (dep_var == "rsfMRI_Component1") {
+        plot_title <- "Anterior and Posterior Default Mode Network"
+    } else if (dep_var == "rsfMRI_Component5") {
+        plot_title <- "Left Executive Function Network"
+    } else if (dep_var == "rsfMRI_Component9") {
+        plot_title <- "Central Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component10") {
+        plot_title <- "Affect Processing Network"
+    }
+    else if (dep_var == "rsfMRI_Component13") {
+        plot_title <- "Right Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component14") {
+        plot_title <- "Fronto-Cingular Network"
+    }
+    else if (dep_var == "rsfMRI_Component20") {
+        plot_title <- "Posterior Default Mode Network"
+    }
+   
+        # Create the plot for the current dependent variable
+    p <- ggplot(df_filtered, aes_string(x = "Folate_mean", y = predicted_col_name)) +
+      geom_point(aes(color = as.factor(family_history_AD), fill = as.factor(family_history_AD)), shape = 21, size = 24, stroke=2) +
+      geom_smooth(data = subset(df_filtered, family_history_AD == 0), method = "lm", aes(color = as.factor(family_history_AD)), size = 5, se = FALSE, fullrange = TRUE, color = "#56B4E9") +
+      geom_smooth(data = subset(df_filtered, family_history_AD == 1), method = "lm", aes(color = as.factor(family_history_AD)), size = 5, se = FALSE, fullrange = TRUE, color = "#CC79A7") +
+      labs(
+        title = plot_title,
+        x = "Vitamin B9 (Folate) intake",
+        y = "Network Connectivity Strength (Z-score)",
+        color = "Family History Status",
+        fill = "Family History Status"
+      ) +
+      scale_fill_manual(values = c("0" = "#56B4E9", "1" = "#CC79A7"), labels = c("0" = "Negative", "1" = "Positive")) +
+      scale_color_manual(values = c("0" = "#0000CC", "1" = "#9900CC"), labels = c("0" = "Negative", "1" = "Positive")) +
+      theme_minimal() +
+      theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+    # Save the plot to a specified location
+    file_path <- paste0("C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/interaction_VB9_FH_", dep_var, ".tiff")
+    ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+}
+
+# Clearing the workspace
+rm(list = ls())
+
+
+# IC1 with Folate on APOE
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables (including both components)
+dependent_vars <- c("rsfMRI_Component1")
+
+# Loop over each dependent variable
+for (dep_var in dependent_vars) {
+    # Fit the model
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + Folate_mean + APOE_all:Folate_mean + (1 | Assessment_0)"))
+    model <- lmer(formula, data = df, REML = FALSE)
+
+    # Generate predicted values
+    model_rows <- complete.cases(model.frame(model))
+    predicted_values_full <- rep(NA, nrow(df))
+    predicted_values_full[model_rows] <- predict(model, re.form = NA)
+    
+    # Add the predicted values to df
+    predicted_col_name <- paste("predicted", dep_var, sep = "_")
+    df[[predicted_col_name]] <- predicted_values_full
+
+    # Filter out rows where Family_history_AD is NA
+    df_filtered <- df[!is.na(df$APOE_all), ]
+
+    # Determine the plot title based on the dependent variable
+    if (dep_var == "rsfMRI_Component1") {
+        plot_title <- "Anterior and Posterior Default Mode Network"
+    } else if (dep_var == "rsfMRI_Component5") {
+        plot_title <- "Left Executive Function Network"
+    } else if (dep_var == "rsfMRI_Component9") {
+        plot_title <- "Central Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component10") {
+        plot_title <- "Affect Processing Network"
+    }
+    else if (dep_var == "rsfMRI_Component13") {
+        plot_title <- "Right Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component14") {
+        plot_title <- "Fronto-Cingular Network"
+    }
+    else if (dep_var == "rsfMRI_Component20") {
+        plot_title <- "Posterior Default Mode Network"
+    }
+   
+        # Create the plot for the current dependent variable
+    p <- ggplot(df_filtered, aes_string(x = "Folate_mean", y = predicted_col_name)) +
+      geom_point(aes(color = as.factor(APOE_all), fill = as.factor(APOE_all)), shape = 21, size = 24, stroke=2, data = subset(df_filtered, APOE_all %in% c(0, 1))) +
+      geom_smooth(data = subset(df_filtered, APOE_all == 0), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#56B4E9") +
+      geom_smooth(data = subset(df_filtered, APOE_all == 1), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#CC79A7") +
+      labs(
+        title = plot_title,
+        x = "Vitamin B9 (Folate) intake",
+        y = "Network Connectivity Strength (Z-score)",
+        color = "APOE4 Status",
+        fill = "APOE4 Status"
+      ) +
+      scale_fill_manual(values = c("0" = "#56B4E9", "1" = "#CC79A7"), labels = c("0" = "Negative", "1" = "Positive")) +
+      scale_color_manual(values = c("0" = "#0000CC", "1" = "#9900CC"), labels = c("0" = "Negative", "1" = "Positive")) +
+      theme_minimal() +
+      theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+    # Save the plot to a specified location
+    file_path <- paste0("C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/interaction_VB9_APOE_", dep_var, ".tiff")
+    ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+}
+
+# Clearing the workspace
+rm(list = ls())
+
+# IC1,5 with VB12 on APOE
+
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables (including both components)
+dependent_vars <- c("rsfMRI_Component1", "rsfMRI_Component5")
+
+# Loop over each dependent variable
+for (dep_var in dependent_vars) {
+    # Fit the model
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + APOE_all:VB12_mean + (1 | Assessment_0)"))
+    model <- lmer(formula, data = df, REML = FALSE)
+
+    # Generate predicted values
+    model_rows <- complete.cases(model.frame(model))
+    predicted_values_full <- rep(NA, nrow(df))
+    predicted_values_full[model_rows] <- predict(model, re.form = NA)
+    
+    # Add the predicted values to df
+    predicted_col_name <- paste("predicted", dep_var, sep = "_")
+    df[[predicted_col_name]] <- predicted_values_full
+
+    # Filter out rows where Family_history_AD is NA
+    df_filtered <- df[!is.na(df$APOE_all), ]
+
+    # Determine the plot title based on the dependent variable
+    if (dep_var == "rsfMRI_Component1") {
+        plot_title <- "Anterior and Posterior Default Mode Network"
+    } else if (dep_var == "rsfMRI_Component5") {
+        plot_title <- "Left Executive Function Network"
+    } else if (dep_var == "rsfMRI_Component9") {
+        plot_title <- "Central Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component10") {
+        plot_title <- "Affect Processing Network"
+    }
+    else if (dep_var == "rsfMRI_Component13") {
+        plot_title <- "Right Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component14") {
+        plot_title <- "Fronto-Cingular Network"
+    }
+    else if (dep_var == "rsfMRI_Component20") {
+        plot_title <- "Posterior Default Mode Network"
+    }
+   
+        # Create the plot for the current dependent variable
+    p <- ggplot(df_filtered, aes_string(x = "VB12_mean", y = predicted_col_name)) +
+      geom_point(aes(color = as.factor(APOE_all), fill = as.factor(APOE_all)), shape = 21, size = 24, stroke=2, data = subset(df_filtered, APOE_all %in% c(0, 1))) +
+      geom_smooth(data = subset(df_filtered, APOE_all == 0), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#56B4E9") +
+      geom_smooth(data = subset(df_filtered, APOE_all == 1), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#CC79A7") +
+      labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)",
+        color = "APOE4 Status",
+        fill = "APOE4 Status"
+      ) +
+      scale_fill_manual(values = c("0" = "#56B4E9", "1" = "#CC79A7"), labels = c("0" = "Negative", "1" = "Positive")) +
+      scale_color_manual(values = c("0" = "#0000CC", "1" = "#9900CC"), labels = c("0" = "Negative", "1" = "Positive")) +
+      theme_minimal() +
+      theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+    # Save the plot to a specified location
+    file_path <- paste0("C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/interaction_VB12_APOE_", dep_var, ".tiff")
+    ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+}
+
+# Clearing the workspace
+rm(list = ls())
+
+
+# IC1,5 with VB12 on APOE
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables (including both components)
+dependent_vars <- c("rsfMRI_Component1", "rsfMRI_Component5")
+
+# Loop over each dependent variable
+for (dep_var in dependent_vars) {
+    # Fit the model
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + APOE_all:VB12_mean + (1 | Assessment_0)"))
+    model <- lmer(formula, data = df, REML = FALSE)
+
+    # Generate predicted values
+    model_rows <- complete.cases(model.frame(model))
+    predicted_values_full <- rep(NA, nrow(df))
+    predicted_values_full[model_rows] <- predict(model, re.form = NA)
+    
+    # Add the predicted values to df
+    predicted_col_name <- paste("predicted", dep_var, sep = "_")
+    df[[predicted_col_name]] <- predicted_values_full
+
+    # Filter out rows where Family_history_AD is NA
+    df_filtered <- df[!is.na(df$family_history_AD), ]
+
+    # Determine the plot title based on the dependent variable
+    if (dep_var == "rsfMRI_Component1") {
+        plot_title <- "Anterior and Posterior Default Mode Network"
+    } else if (dep_var == "rsfMRI_Component5") {
+        plot_title <- "Left Executive Function Network"
+    } else if (dep_var == "rsfMRI_Component9") {
+        plot_title <- "Central Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component10") {
+        plot_title <- "Affect Processing Network"
+    }
+    else if (dep_var == "rsfMRI_Component13") {
+        plot_title <- "Right Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component14") {
+        plot_title <- "Fronto-Cingular Network"
+    }
+    else if (dep_var == "rsfMRI_Component20") {
+        plot_title <- "Posterior Default Mode Network"
+    }
+   
+        # Create the plot for the current dependent variable
+    p <- ggplot(df_filtered, aes_string(x = "VB12_mean", y = predicted_col_name)) +
+      geom_point(aes(color = as.factor(APOE_all), fill = as.factor(APOE_all)), shape = 21, size = 24, stroke=2, data = subset(df_filtered, APOE_all %in% c(0, 1))) +
+      geom_smooth(data = subset(df_filtered, APOE_all == 0), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#56B4E9") +
+      geom_smooth(data = subset(df_filtered, APOE_all == 1), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#CC79A7") +
+      labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)",
+        color = "APOE4 Status",
+        fill = "APOE4 Status"
+      ) +
+      scale_fill_manual(values = c("0" = "#56B4E9", "1" = "#CC79A7"), labels = c("0" = "Negative", "1" = "Positive")) +
+      scale_color_manual(values = c("0" = "#0000CC", "1" = "#9900CC"), labels = c("0" = "Negative", "1" = "Positive")) +
+      theme_minimal() +
+      theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+    # Save the plot to a specified location
+    file_path <- paste0("C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/interaction_VB12_APOE_", dep_var, ".tiff")
+    ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+}
+
+# Clearing the workspace
+rm(list = ls())
+
+# IC5 with VB12 on TOMM40
+
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables (including both components)
+dependent_vars <- c("rsfMRI_Component5")
+
+# Loop over each dependent variable
+for (dep_var in dependent_vars) {
+    # Fit the model
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + T40_Gcar:VB12_mean + (1 | Assessment_0)"))
+    model <- lmer(formula, data = df, REML = FALSE)
+
+    # Generate predicted values
+    model_rows <- complete.cases(model.frame(model))
+    predicted_values_full <- rep(NA, nrow(df))
+    predicted_values_full[model_rows] <- predict(model, re.form = NA)
+    
+    # Add the predicted values to df
+    predicted_col_name <- paste("predicted", dep_var, sep = "_")
+    df[[predicted_col_name]] <- predicted_values_full
+
+    # Filter out rows where Family_history_AD is NA
+    df_filtered <- df[!is.na(df$family_history_AD), ]
+
+    # Determine the plot title based on the dependent variable
+    if (dep_var == "rsfMRI_Component1") {
+        plot_title <- "Anterior and Posterior Default Mode Network"
+    } else if (dep_var == "rsfMRI_Component5") {
+        plot_title <- "Left Executive Function Network"
+    } else if (dep_var == "rsfMRI_Component9") {
+        plot_title <- "Central Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component10") {
+        plot_title <- "Affect Processing Network"
+    }
+    else if (dep_var == "rsfMRI_Component13") {
+        plot_title <- "Right Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component14") {
+        plot_title <- "Fronto-Cingular Network"
+    }
+    else if (dep_var == "rsfMRI_Component20") {
+        plot_title <- "Posterior Default Mode Network"
+    }
+   
+        # Create the plot for the current dependent variable
+    p <- ggplot(df_filtered, aes_string(x = "VB12_mean", y = predicted_col_name)) +
+      geom_point(aes(color = as.factor(T40_Gcar), fill = as.factor(T40_Gcar)), shape = 21, size = 24, stroke=2, data = subset(df_filtered, T40_Gcar %in% c(0, 1))) +
+      geom_smooth(data = subset(df_filtered, T40_Gcar == 0), method = "lm", aes(color = as.factor(T40_Gcar)), size = 5, se = FALSE, fullrange = TRUE, color = "#56B4E9") +
+      geom_smooth(data = subset(df_filtered, T40_Gcar == 1), method = "lm", aes(color = as.factor(T40_Gcar)), size = 5, se = FALSE, fullrange = TRUE, color = "#CC79A7") +
+      labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)",
+        color = "TOMM40 Status",
+        fill = "TOMM40 Status"
+      ) +
+      scale_fill_manual(values = c("0" = "#56B4E9", "1" = "#CC79A7"), labels = c("0" = "Negative", "1" = "Positive")) +
+      scale_color_manual(values = c("0" = "#0000CC", "1" = "#9900CC"), labels = c("0" = "Negative", "1" = "Positive")) +
+      theme_minimal() +
+      theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+    # Save the plot to a specified location
+    file_path <- paste0("C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/interaction_VB12_TOMM40_", dep_var, ".tiff")
+    ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+}
+
+# IC1,5, 13 with VB6 on APOE
+
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables (including both components)
+dependent_vars <- c("rsfMRI_Component1", "rsfMRI_Component5","rsfMRI_Component13")
+
+# Loop over each dependent variable
+for (dep_var in dependent_vars) {
+    # Fit the model
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB6_mean + APOE_all:VB12_mean + (1 | Assessment_0)"))
+    model <- lmer(formula, data = df, REML = FALSE)
+
+    # Generate predicted values
+    model_rows <- complete.cases(model.frame(model))
+    predicted_values_full <- rep(NA, nrow(df))
+    predicted_values_full[model_rows] <- predict(model, re.form = NA)
+    
+    # Add the predicted values to df
+    predicted_col_name <- paste("predicted", dep_var, sep = "_")
+    df[[predicted_col_name]] <- predicted_values_full
+
+    # Filter out rows where Family_history_AD is NA
+    df_filtered <- df[!is.na(df$family_history_AD), ]
+
+    # Determine the plot title based on the dependent variable
+    if (dep_var == "rsfMRI_Component1") {
+        plot_title <- "Anterior and Posterior Default Mode Network"
+    } else if (dep_var == "rsfMRI_Component5") {
+        plot_title <- "Left Executive Function Network"
+    } else if (dep_var == "rsfMRI_Component9") {
+        plot_title <- "Central Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component10") {
+        plot_title <- "Affect Processing Network"
+    }
+    else if (dep_var == "rsfMRI_Component13") {
+        plot_title <- "Right Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component14") {
+        plot_title <- "Fronto-Cingular Network"
+    }
+    else if (dep_var == "rsfMRI_Component20") {
+        plot_title <- "Posterior Default Mode Network"
+    }
+   
+        # Create the plot for the current dependent variable
+    p <- ggplot(df_filtered, aes_string(x = "VB6_mean", y = predicted_col_name)) +
+      geom_point(aes(color = as.factor(APOE_all), fill = as.factor(APOE_all)), shape = 21, size = 24, stroke=2, data = subset(df_filtered, APOE_all %in% c(0, 1))) +
+      geom_smooth(data = subset(df_filtered, APOE_all == 0), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#56B4E9") +
+      geom_smooth(data = subset(df_filtered, APOE_all == 1), method = "lm", aes(color = as.factor(APOE_all)), size = 5, se = FALSE, fullrange = TRUE, color = "#CC79A7") +
+      labs(
+        title = plot_title,
+        x = "Vitamin B6 (Pyridoxine) intake",
+        y = "Network Connectivity Strength (Z-score)",
+        color = "APOE4 Status",
+        fill = "APOE4 Status"
+      ) +
+      scale_fill_manual(values = c("0" = "#56B4E9", "1" = "#CC79A7"), labels = c("0" = "Negative", "1" = "Positive")) +
+      scale_color_manual(values = c("0" = "#0000CC", "1" = "#9900CC"), labels = c("0" = "Negative", "1" = "Positive")) +
+      theme_minimal() +
+      theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+    # Save the plot to a specified location
+    file_path <- paste0("C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/interaction_VB6_APOE_", dep_var, ".tiff")
+    ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+}
+
+# Clearing the workspace
+rm(list = ls())
+
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID")
+for (var in factor_vars) {
+  df[[var]] <- as.factor(df[[var]])
+}
+rm(factor_vars,var)
+
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component1", "rsfMRI_Component5", "rsfMRI_Component7", "rsfMRI_Component9", "rsfMRI_Component10", "rsfMRI_Component13", "rsfMRI_Component14", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+
+for (var in scale_vars) {
+  df[[var]] <- scale(df[[var]])
+}
+rm(scale_vars, var)
+
+# Define the dependent variables (including both components)
+dependent_vars <- c("rsfMRI_Component5")
+
+# Loop over each dependent variable
+for (dep_var in dependent_vars) {
+    # Fit the model
+    formula <- as.formula(paste(dep_var, "~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB6_mean + T40_Gcar:VB12_mean + (1 | Assessment_0)"))
+    model <- lmer(formula, data = df, REML = FALSE)
+
+    # Generate predicted values
+    model_rows <- complete.cases(model.frame(model))
+    predicted_values_full <- rep(NA, nrow(df))
+    predicted_values_full[model_rows] <- predict(model, re.form = NA)
+    
+    # Add the predicted values to df
+    predicted_col_name <- paste("predicted", dep_var, sep = "_")
+    df[[predicted_col_name]] <- predicted_values_full
+
+    # Filter out rows where Family_history_AD is NA
+    df_filtered <- df[!is.na(df$family_history_AD), ]
+
+    # Determine the plot title based on the dependent variable
+    if (dep_var == "rsfMRI_Component1") {
+        plot_title <- "Anterior and Posterior Default Mode Network"
+    } else if (dep_var == "rsfMRI_Component5") {
+        plot_title <- "Left Executive Function Network"
+    } else if (dep_var == "rsfMRI_Component9") {
+        plot_title <- "Central Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component10") {
+        plot_title <- "Affect Processing Network"
+    }
+    else if (dep_var == "rsfMRI_Component13") {
+        plot_title <- "Right Executive Function Network"
+    }
+    else if (dep_var == "rsfMRI_Component14") {
+        plot_title <- "Fronto-Cingular Network"
+    }
+    else if (dep_var == "rsfMRI_Component20") {
+        plot_title <- "Posterior Default Mode Network"
+    }
+   
+        # Create the plot for the current dependent variable
+    p <- ggplot(df_filtered, aes_string(x = "VB12_mean", y = predicted_col_name)) +
+      geom_point(aes(color = as.factor(T40_Gcar), fill = as.factor(T40_Gcar)), shape = 21, size = 24, stroke=2, data = subset(df_filtered, T40_Gcar %in% c(0, 1))) +
+      geom_smooth(data = subset(df_filtered, T40_Gcar == 0), method = "lm", aes(color = as.factor(T40_Gcar)), size = 5, se = FALSE, fullrange = TRUE, color = "#56B4E9") +
+      geom_smooth(data = subset(df_filtered, T40_Gcar == 1), method = "lm", aes(color = as.factor(T40_Gcar)), size = 5, se = FALSE, fullrange = TRUE, color = "#CC79A7") +
+      labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)",
+        color = "TOMM40 Status",
+        fill = "TOMM40 Status"
+      ) +
+      scale_fill_manual(values = c("0" = "#56B4E9", "1" = "#CC79A7"), labels = c("0" = "Negative", "1" = "Positive")) +
+      scale_color_manual(values = c("0" = "#0000CC", "1" = "#9900CC"), labels = c("0" = "Negative", "1" = "Positive")) +
+      theme_minimal() +
+      theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      )
+
+    # Save the plot to a specified location
+    file_path <- paste0("C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/interaction_VB6_TOMM40_", dep_var, ".tiff")
+    ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+}
+
+# Clearing the workspace
+rm(list = ls())
+```
+
+
+
