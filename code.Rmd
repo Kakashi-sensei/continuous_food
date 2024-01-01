@@ -1,0 +1,64 @@
+---
+title: "code"
+author: "Tim"
+date: "2024-01-01"
+output: html_document
+---
+
+```{r}
+#redo mean values for the continuous data
+# all extrem large values are excluded
+
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\food_contious.csv')
+
+#exclude values greater than it shold be.
+
+# Named vector of thresholds for each variable
+thresholds <- c(Energy_1.0=47523.7,Energy_2.0=68418.5,Energy_3.0=51266.1,Energy_4.0=60976.3,Energy_0.0=78205.7,Protein_1.0=636.08,Protein_2.0=792.06,Protein_3.0=565.45,Protein_4.0=665.63,Protein_0.0=801.85,Fat_1.0=490.39,Fat_2.0=687.72,Fat_3.0=499.93,Fat_4.0=553.05,Fat_0.0=576.6,Carbohydrate_1.0=1615.02,Carbohydrate_2.0=1752.88,Carbohydrate_3.0=1595.81,Carbohydrate_4.0=1833.78,Carbohydrate_0.0=2562.05,SaturateFat_1.0=207.09,SaturateFat_2.0=225.47,SaturateFat_3.0=209.06,SaturateFat_4.0=200.54,SaturateFat_0.0=252.17,PolyunsaturatFat_1.0=115.61,PolyunsaturatFat_2.0=150.71,PolyunsaturatFat_3.0=98.48,PolyunsaturatFat_4.0=119.47,PolyunsaturatFat_0.0=126.26,Sugars_1.0=755.95,Sugars_2.0=1239.45,Sugars_3.0=784.1,Sugars_4.0=1276.38,Sugars_0.0=1342.33,EnglystDietaryFibre_1.0=129.58,EnglystDietaryFibre_2.0=125.78,EnglystDietaryFibre_3.0=132.59,EnglystDietaryFibre_4.0=202.08,EnglystDietaryFibre_0.0=153.88,Iron_1.0=67.09,Iron_2.0=105.61,Iron_3.0=92.51,Iron_4.0=105.63,Iron_0.0=124.32,VB6_1.0=14.45,VB6_2.0=19.28,VB6_3.0=13.21,VB6_4.0=14.83,VB6_0.0=20.39,VB12_1.0=95.25,VB12_2.0=100.75,VB12_3.0=99.6,VB12_4.0=114.2,VB12_0.0=97.51,Folate_1.0=1973,Folate_2.0=2241.14,Folate_3.0=2123.26,Folate_4.0=2353.85,Folate_0.0=2734.28,VC_1.0=2564,VC_2.0=2278.67,VC_3.0=1865.17,VC_4.0=3218.29,VC_0.0=3788.34,Potassium_1.0=25757.3,Potassium_2.0=32298.2,Potassium_3.0=24940.6,Potassium_4.0=26038.7,Potassium_0.0=30634.8,Magnesium_1.0=1909.81,Magnesium_2.0=2765.46,Magnesium_3.0=2106.65,Magnesium_4.0=2522.53,Magnesium_0.0=3103.12,Retinol_1.0=999.99,Retinol_2.0=999.68,Retinol_3.0=999.5,Retinol_4.0=999.77,Retinol_0.0=999.93,Carotene_1.0=52829.4,Carotene_2.0=46729.1,Carotene_3.0=52510.5,Carotene_4.0=51772.4,Carotene_0.0=47406.1,VD_1.0=46.32,VD_2.0=44.64,VD_3.0=44.12,VD_4.0=45.43,VD_0.0=48.59,Alcohol_continuous_1.0=255.21,Alcohol_continuous_2.0=275.2,Alcohol_continuous_3.0=289.19,Alcohol_continuous_4.0=329.45,Alcohol_continuous_0.0=274.5,Starch_1.0=701.26,Starch_2.0=715.11,Starch_3.0=656.86,Starch_4.0=943.23,Starch_0.0=1388.88,Calcium_1.0=7033.75,Calcium_2.0=8086.33,Calcium_3.0=7172.47,Calcium_4.0=7705.8,Calcium_0.0=8011.52,VE_1.0=84.53,VE_2.0=96.62,VE_3.0=78.16,VE_4.0=79.22,VE_0.0=87.24,)
+
+
+# the following variables may need to log: Polyunsaturated fat, VB12?, VC, Retinol, Carotene, VD, Alcohol?, 
+
+
+
+
+# List of variables
+variables <- c("Energy", "Protein", "Fat", "Carbohydrate", "SaturateFat", "PolyunsaturatFat", 
+               "Sugars", "EnglystDietaryFibre", "Iron", "VB6", "VB12", "Folate", 
+               "VC", "Potassium", "Magnesium", "Retinol", "Carotene", "VD", 
+               "Alcohol_continuous", "Starch", "Calcium", "VE")
+# Suffix for each variable
+suffix <- c("_1.0", "_2.0", "_3.0", "_4.0", "_0.0")
+# Loop through all variables
+for (var in variables) {
+  # Generate the column names for each variable
+  cols <- paste0(var, suffix)
+  # Check if columns exist in the dataframe
+  if (all(cols %in% colnames(df))) {
+    # Calculate the mean
+    df[[paste0(var, "_mean")]] <- rowMeans(df[, cols], na.rm = TRUE)
+  } else {
+    # Print a message if columns are not found in the dataframe
+    print(paste("Columns for variable", var, "not found in the dataframe."))
+  }
+}
+#removed the column from the dataframe
+# Create an empty vector to store all the column names
+cols_to_remove <- c()
+
+# Loop through all variables
+for (var in variables) {
+  
+  # Generate the column names for each variable
+  cols <- paste0(var, suffix)
+  
+  # Append to the list of columns to remove
+  cols_to_remove <- c(cols_to_remove, cols)
+}
+
+# Remove the columns from the dataframe
+df <- df[ , !(colnames(df) %in% cols_to_remove)]
+
+write.csv(df, "C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\food_continuous.csv",na='',row.names=FALSE)
+rm(list=ls())
+```
