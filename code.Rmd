@@ -616,7 +616,7 @@ ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 7
 # Remove all objects except for 'df'
 rm(list = setdiff(ls(), "df"))
 
-# IC4,8,19,20 with VB12
+# IC2, 4,8,19,20 with VB12
 # IC 20 first
 df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
 
@@ -674,7 +674,7 @@ p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component20)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component20.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB12_rsFMRI_Component20.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -736,7 +736,7 @@ p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component2)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component2.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB12_rsFMRI_Component2.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -799,7 +799,7 @@ p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component4)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component4.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB12_rsFMRI_Component4.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -860,7 +860,7 @@ p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component8)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component8.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB12_rsFMRI_Component8.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -921,7 +921,7 @@ p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component19)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component19.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB12_rsFMRI_Component19.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -985,7 +985,7 @@ p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component20)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component20.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB6_rsFMRI_Component20.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -1047,7 +1047,7 @@ p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component2)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component2.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB6_rsFMRI_Component2.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -1110,7 +1110,7 @@ p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component4)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component4.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB6_rsFMRI_Component4.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -1171,7 +1171,7 @@ p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component8)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component8.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB6_rsFMRI_Component8.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all objects except for 'df'
@@ -1232,7 +1232,7 @@ p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component19)) +
     )
 
 # Save the plot
-file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component19.tiff"
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB6_rsFMRI_Component19.tiff"
 ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
 
 # Remove all 
