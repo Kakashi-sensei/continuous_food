@@ -364,13 +364,890 @@ write.csv(results, "C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\
 rm(list=ls())
 ```
 
+```{r}
+library(lmerTest)
+library(ggplot2)
+library(ggthemes)  # for Calibri font
+# maineffects images
+# IC4,8,19,20 with Folate
+# IC 20 first
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+selected_vars <- df[c("Folate_mean", "rsfMRI_Component20", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component2", "rsfMRI_Component4", "rsfMRI_Component8", "rsfMRI_Component19", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component20
+formula <- as.formula("rsfMRI_Component20 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + Folate_mean + (1 | Assessment_0)")
+model_rsFMRI20 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI20))
+predicted_values_rsFMRI20 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI20[model_rows] <- predict(model_rsFMRI20, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component20 <- predicted_values_rsFMRI20
+
+# Create the plot
+plot_title <- "Posterior Default Mode Network"
+p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component20)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B9 (Folate) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component20.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+#IC 4 next
+selected_vars <- df[c("Folate_mean", "rsfMRI_Component4", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component2", "rsfMRI_Component4", "rsfMRI_Component8", "rsfMRI_Component19", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component4
+formula <- as.formula("rsfMRI_Component4 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + Folate_mean + (1 | Assessment_0)")
+model_rsFMRI4 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI4))
+predicted_values_rsFMRI4 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI4[model_rows] <- predict(model_rsFMRI4, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component4 <- predicted_values_rsFMRI4
+
+# Create the plot
+plot_title <- "Posterior Default Mode Network"
+p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component4)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B9 (Folate) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component4.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+#then IC 8
+selected_vars <- df[c("Folate_mean", "rsfMRI_Component8", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component8", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component8
+formula <- as.formula("rsfMRI_Component8 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + Folate_mean + (1 | Assessment_0)")
+model_rsFMRI8 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI8))
+predicted_values_rsFMRI8 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI8[model_rows] <- predict(model_rsFMRI8, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component8 <- predicted_values_rsFMRI8
+
+# Create the plot
+plot_title <- "Posterior Default Mode Network"
+p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component8)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B9 (Folate) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component8.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+# then IC 19
+selected_vars <- df[c("Folate_mean", "rsfMRI_Component19", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB12_mean", "Folate_mean", "rsfMRI_Component19", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component19
+formula <- as.formula("rsfMRI_Component19 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + Folate_mean + (1 | Assessment_0)")
+model_rsFMRI19 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI19))
+predicted_values_rsFMRI19 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI19[model_rows] <- predict(model_rsFMRI19, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component19 <- predicted_values_rsFMRI19
+
+# Create the plot
+plot_title <- "Posterior Default Mode Network"
+p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component19)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B9 (Folate) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component19.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+# IC4,8,19,20 with VB12
+# IC 20 first
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+selected_vars <- df[c("VB12_mean", "rsfMRI_Component20", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB12_mean", "VB12_mean", "rsfMRI_Component2", "rsfMRI_Component4", "rsfMRI_Component8", "rsfMRI_Component19", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component20
+formula <- as.formula("rsfMRI_Component20 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + (1 | Assessment_0)")
+model_rsFMRI20 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI20))
+predicted_values_rsFMRI20 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI20[model_rows] <- predict(model_rsFMRI20, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component20 <- predicted_values_rsFMRI20
+
+# Create the plot
+plot_title <- "Posterior Default Mode Network"
+p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component20)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component20.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+# IC 2 next
+
+selected_vars <- df[c("VB12_mean", "rsfMRI_Component2", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB12_mean", "rsfMRI_Component2", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component2
+formula <- as.formula("rsfMRI_Component2 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + (1 | Assessment_0)")
+model_rsFMRI2 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI2))
+predicted_values_rsFMRI2 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI2[model_rows] <- predict(model_rsFMRI2, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component2 <- predicted_values_rsFMRI2
+
+# Create the plot
+plot_title <- "Integrative Visual Processing Network"
+p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component2)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component2.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+
+
+#IC 4 next
+selected_vars <- df[c("VB12_mean", "rsfMRI_Component4", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB12_mean", "VB12_mean", "rsfMRI_Component2", "rsfMRI_Component4", "rsfMRI_Component8", "rsfMRI_Component19", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component4
+formula <- as.formula("rsfMRI_Component4 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + (1 | Assessment_0)")
+model_rsFMRI4 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI4))
+predicted_values_rsFMRI4 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI4[model_rows] <- predict(model_rsFMRI4, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component4 <- predicted_values_rsFMRI4
+
+# Create the plot
+plot_title <- "Multimodal Visual Association Network"
+p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component4)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component4.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+#then IC 8
+selected_vars <- df[c("VB12_mean", "rsfMRI_Component8", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB12_mean", "VB12_mean", "rsfMRI_Component8", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component8
+formula <- as.formula("rsfMRI_Component8 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + (1 | Assessment_0)")
+model_rsFMRI8 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI8))
+predicted_values_rsFMRI8 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI8[model_rows] <- predict(model_rsFMRI8, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component8 <- predicted_values_rsFMRI8
+
+# Create the plot
+plot_title <- "Primary Visual Cortex Network"
+p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component8)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component8.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+# then IC 19
+selected_vars <- df[c("VB12_mean", "rsfMRI_Component19", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB12_mean", "VB12_mean", "rsfMRI_Component19", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component19
+formula <- as.formula("rsfMRI_Component19 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB12_mean + (1 | Assessment_0)")
+model_rsFMRI19 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI19))
+predicted_values_rsFMRI19 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI19[model_rows] <- predict(model_rsFMRI19, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component19 <- predicted_values_rsFMRI19
+
+# Create the plot
+plot_title <- "Posterior Visual Processing Unit"
+p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component19)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component19.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+# IC4,8,19,20 with VB6
+# IC 20 first
+df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
+
+selected_vars <- df[c("VB6_mean", "rsfMRI_Component20", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB6_mean", "rsfMRI_Component2", "rsfMRI_Component4", "rsfMRI_Component8", "rsfMRI_Component19", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component20
+formula <- as.formula("rsfMRI_Component20 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB6_mean + (1 | Assessment_0)")
+model_rsFMRI20 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI20))
+predicted_values_rsFMRI20 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI20[model_rows] <- predict(model_rsFMRI20, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component20 <- predicted_values_rsFMRI20
+
+# Create the plot
+plot_title <- "Posterior Default Mode Network"
+p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component20)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component20.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+# IC 2 next
+
+selected_vars <- df[c("VB6_mean", "rsfMRI_Component2", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "rsfMRI_Component2", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component2
+formula <- as.formula("rsfMRI_Component2 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB6_mean + (1 | Assessment_0)")
+model_rsFMRI2 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI2))
+predicted_values_rsFMRI2 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI2[model_rows] <- predict(model_rsFMRI2, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component2 <- predicted_values_rsFMRI2
+
+# Create the plot
+plot_title <- "Integrative Visual Processing Network"
+p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component2)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component2.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+
+
+#IC 4 next
+selected_vars <- df[c("VB6_mean", "rsfMRI_Component4", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB6_mean", "rsfMRI_Component2", "rsfMRI_Component4", "rsfMRI_Component8", "rsfMRI_Component19", "rsfMRI_Component20", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component4
+formula <- as.formula("rsfMRI_Component4 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB6_mean + (1 | Assessment_0)")
+model_rsFMRI4 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI4))
+predicted_values_rsFMRI4 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI4[model_rows] <- predict(model_rsFMRI4, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component4 <- predicted_values_rsFMRI4
+
+# Create the plot
+plot_title <- "Multimodal Visual Association Network"
+p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component4)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component4.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+#then IC 8
+selected_vars <- df[c("VB6_mean", "rsfMRI_Component8", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB6_mean", "rsfMRI_Component8", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component8
+formula <- as.formula("rsfMRI_Component8 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB6_mean + (1 | Assessment_0)")
+model_rsFMRI8 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI8))
+predicted_values_rsFMRI8 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI8[model_rows] <- predict(model_rsFMRI8, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component8 <- predicted_values_rsFMRI8
+
+# Create the plot
+plot_title <- "Primary Visual Cortex Network"
+p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component8)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component8.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all objects except for 'df'
+rm(list = setdiff(ls(), "df"))
+
+# then IC 19
+selected_vars <- df[c("VB6_mean", "rsfMRI_Component19", "APOE_all", "T40_Gcar", "family_history_AD", "Age_Baseline", "Sex", "BMI_Y08andY12andY14_mean" , "AlcoholY08" , "SmokingY08", "Townsend", "Assessment_0")]
+df_clean <- df[complete.cases(selected_vars), ]
+
+# Fit the model -- factor all factor variables
+factor_vars <- c("AlcoholY08", "SmokingY08", "Assessment_0", "EID", "APOE_all", "T40_Gcar", "family_history_AD")
+for (var in factor_vars) {
+  df_clean[[var]] <- as.factor(df_clean[[var]])
+}
+rm(factor_vars,var)
+
+rm(selected_vars)
+# Scale all continuous variables
+scale_vars <- c("VB6_mean", "VB6_mean", "rsfMRI_Component19", "Age_Baseline", "BMI_Y08andY12andY14_mean")
+
+# Fit the model for rsfMRI_Component19
+formula <- as.formula("rsfMRI_Component19 ~ APOE_all + T40_Gcar + family_history_AD + Age_Baseline + Sex + BMI_Y08andY12andY14_mean + AlcoholY08 + SmokingY08 + Townsend + VB6_mean + (1 | Assessment_0)")
+model_rsFMRI19 <- lmer(formula, data = df_clean, REML = FALSE)
+
+# Generate predicted values
+model_rows <- complete.cases(model.frame(model_rsFMRI19))
+predicted_values_rsFMRI19 <- rep(NA, nrow(df_clean))
+predicted_values_rsFMRI19[model_rows] <- predict(model_rsFMRI19, re.form = NA)
+
+# Add predicted values to df_clean
+df_clean$predicted_rsFMRI_Component19 <- predicted_values_rsFMRI19
+
+# Create the plot
+plot_title <- "Posterior Visual Processing Unit"
+p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component19)) +
+    geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
+    geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
+    labs(
+        title = plot_title,
+        x = "Vitamin B12 (Cobalamin) intake",
+        y = "Network Connectivity Strength (Z-score)"
+    ) +
+    theme_minimal() +
+    theme(
+        text = element_text(size = 48, family = "Calibri"),
+        axis.title = element_text(size = 60, family = "Calibri"),
+        plot.title = element_text(size = 60, hjust = 0.5),
+        axis.text = element_text(size = 60),
+        panel.border = element_rect(colour = "black", fill = NA, size = 10),
+        axis.ticks = element_line(size = 10),
+        axis.ticks.length = unit(48, "pt"),
+        legend.text = element_text(size = 48),
+        legend.position = c(0.8, 0.8),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+    )
+
+# Save the plot
+file_path <- "C:/Users/timothy/OneDrive/Documents/ISU/food_project/output/VBs/figures/R/maineffects_VB9_rsFMRI_Component19.tiff"
+ggsave(file_path, plot = p, width = 22.22, height = 27.78, units = "in", dpi = 72)
+
+# Remove all 
+rm(list = ls())
+
+```
+
+
 
 
 ```{r}
 library(lmerTest)
 library(ggplot2)
 library(ggthemes)  # for Calibri font
-
+# interaction images
 # IC8, IC20 with Folate on FH
 
 df<-read.csv(file = 'C:\\Users\\timothy\\OneDrive\\Documents\\ISU\\food_project\\data\\data_for_test\\updated\\food_continuous.csv')
