@@ -400,7 +400,7 @@ predicted_values_rsFMRI20[model_rows] <- predict(model_rsFMRI20, re.form = NA)
 df_clean$predicted_rsFMRI_Component20 <- predicted_values_rsFMRI20
 
 # Create the plot
-plot_title <- "Posterior Default Mode Network"
+plot_title <- "Posterior Default Mode Network (IC20)"
 p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component20)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -461,7 +461,7 @@ predicted_values_rsFMRI4[model_rows] <- predict(model_rsFMRI4, re.form = NA)
 df_clean$predicted_rsFMRI_Component4 <- predicted_values_rsFMRI4
 
 # Create the plot
-plot_title <- "Posterior Default Mode Network"
+plot_title <- "Multimodal Visual Association Network (IC4)"
 p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component4)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -522,7 +522,7 @@ predicted_values_rsFMRI8[model_rows] <- predict(model_rsFMRI8, re.form = NA)
 df_clean$predicted_rsFMRI_Component8 <- predicted_values_rsFMRI8
 
 # Create the plot
-plot_title <- "Posterior Default Mode Network"
+plot_title <- "Primary Visual Cortex Network (IC8)"
 p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component8)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -583,7 +583,7 @@ predicted_values_rsFMRI19[model_rows] <- predict(model_rsFMRI19, re.form = NA)
 df_clean$predicted_rsFMRI_Component19 <- predicted_values_rsFMRI19
 
 # Create the plot
-plot_title <- "Posterior Default Mode Network"
+plot_title <- "Posterior Visual Processing Unit (IC19)"
 p <- ggplot(df_clean, aes(x = Folate_mean, y = predicted_rsFMRI_Component19)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -647,7 +647,7 @@ predicted_values_rsFMRI20[model_rows] <- predict(model_rsFMRI20, re.form = NA)
 df_clean$predicted_rsFMRI_Component20 <- predicted_values_rsFMRI20
 
 # Create the plot
-plot_title <- "Posterior Default Mode Network"
+plot_title <- "Posterior Default Mode Network (IC20)"
 p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component20)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -709,7 +709,7 @@ predicted_values_rsFMRI2[model_rows] <- predict(model_rsFMRI2, re.form = NA)
 df_clean$predicted_rsFMRI_Component2 <- predicted_values_rsFMRI2
 
 # Create the plot
-plot_title <- "Integrative Visual Processing Network"
+plot_title <- "Integrative Visual Processing Network (IC2)"
 p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component2)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -772,7 +772,7 @@ predicted_values_rsFMRI4[model_rows] <- predict(model_rsFMRI4, re.form = NA)
 df_clean$predicted_rsFMRI_Component4 <- predicted_values_rsFMRI4
 
 # Create the plot
-plot_title <- "Multimodal Visual Association Network"
+plot_title <- "Multimodal Visual Association Network (IC4)"
 p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component4)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -833,7 +833,7 @@ predicted_values_rsFMRI8[model_rows] <- predict(model_rsFMRI8, re.form = NA)
 df_clean$predicted_rsFMRI_Component8 <- predicted_values_rsFMRI8
 
 # Create the plot
-plot_title <- "Primary Visual Cortex Network"
+plot_title <- "Primary Visual Cortex Network (IC8)"
 p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component8)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -894,7 +894,7 @@ predicted_values_rsFMRI19[model_rows] <- predict(model_rsFMRI19, re.form = NA)
 df_clean$predicted_rsFMRI_Component19 <- predicted_values_rsFMRI19
 
 # Create the plot
-plot_title <- "Posterior Visual Processing Unit"
+plot_title <- "Posterior Visual Processing Unit (IC19)"
 p <- ggplot(df_clean, aes(x = VB12_mean, y = predicted_rsFMRI_Component19)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -958,7 +958,7 @@ predicted_values_rsFMRI20[model_rows] <- predict(model_rsFMRI20, re.form = NA)
 df_clean$predicted_rsFMRI_Component20 <- predicted_values_rsFMRI20
 
 # Create the plot
-plot_title <- "Posterior Default Mode Network"
+plot_title <- "Posterior Default Mode Network (IC20)"
 p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component20)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -1020,7 +1020,7 @@ predicted_values_rsFMRI2[model_rows] <- predict(model_rsFMRI2, re.form = NA)
 df_clean$predicted_rsFMRI_Component2 <- predicted_values_rsFMRI2
 
 # Create the plot
-plot_title <- "Integrative Visual Processing Network"
+plot_title <- "Integrative Visual Processing Network (IC2)"
 p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component2)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -1083,7 +1083,7 @@ predicted_values_rsFMRI4[model_rows] <- predict(model_rsFMRI4, re.form = NA)
 df_clean$predicted_rsFMRI_Component4 <- predicted_values_rsFMRI4
 
 # Create the plot
-plot_title <- "Multimodal Visual Association Network"
+plot_title <- "Multimodal Visual Association Network (IC4)"
 p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component4)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -1144,7 +1144,7 @@ predicted_values_rsFMRI8[model_rows] <- predict(model_rsFMRI8, re.form = NA)
 df_clean$predicted_rsFMRI_Component8 <- predicted_values_rsFMRI8
 
 # Create the plot
-plot_title <- "Primary Visual Cortex Network"
+plot_title <- "Primary Visual Cortex Network (IC8)"
 p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component8)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
@@ -1205,7 +1205,7 @@ predicted_values_rsFMRI19[model_rows] <- predict(model_rsFMRI19, re.form = NA)
 df_clean$predicted_rsFMRI_Component19 <- predicted_values_rsFMRI19
 
 # Create the plot
-plot_title <- "Posterior Visual Processing Unit"
+plot_title <- "Posterior Visual Processing Unit (IC19)"
 p <- ggplot(df_clean, aes(x = VB6_mean, y = predicted_rsFMRI_Component19)) +
     geom_point(shape = 21, size = 24, stroke = 2, colour = "black", fill = "gray") +
     geom_smooth(method = "lm", color = "black", size = 2, se = FALSE) +
